@@ -29,6 +29,26 @@ h1, h2, h3, h4, p {
   text-align: center;
 }
 
+.barraBusqueda {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 95%;
+}
+
+.barraBusqueda h2 {
+  margin-top: 1rem;
+  color: #E50606;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  font-size: 2rem;
+}
+
 .buscador {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -68,7 +88,7 @@ h1, h2, h3, h4, p {
   background-color: #48818e;
 }
 
-.pokemones {
+.pokemones_estatico, .pokemones_buscar {
   margin-top: 4rem;
   display: -ms-grid;
   display: grid;
@@ -79,7 +99,7 @@ h1, h2, h3, h4, p {
           align-items: center;
 }
 
-.pokemones .pokemones_pokemon {
+.pokemones_estatico .pokemones_pokemon, .pokemones_buscar .pokemones_pokemon {
   min-height: 25rem;
   min-width: 15.7rem;
   background-color: #9EE493;
@@ -90,24 +110,24 @@ h1, h2, h3, h4, p {
   border-radius: 5px;
 }
 
-.pokemones .pokemones_pokemon p, .pokemones .pokemones_pokemon h2 {
+.pokemones_estatico .pokemones_pokemon p, .pokemones_estatico .pokemones_pokemon h2, .pokemones_buscar .pokemones_pokemon p, .pokemones_buscar .pokemones_pokemon h2 {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-.pokemones .pokemones_pokemon img {
+.pokemones_estatico .pokemones_pokemon img, .pokemones_buscar .pokemones_pokemon img {
   width: 15rem;
 }
 
 @media (min-width: 560px) {
-  .pokemones {
+  .pokemones_estatico, .pokemones_buscar {
     -ms-grid-columns: (1fr)[3];
         grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 370px) {
-  .pokemones {
+  .pokemones_estatico, .pokemones_buscar {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
   }
@@ -127,14 +147,14 @@ h1, h2, h3, h4, p {
 }
 
 @media (min-width: 760px) {
-  .pokemones {
+  .pokemones_estatico, .pokemones_buscar {
     -ms-grid-columns: (1fr)[4];
         grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (min-width: 940px) {
-  .pokemones {
+  .pokemones_estatico, .pokemones_buscar {
     -ms-grid-columns: (1fr)[5];
         grid-template-columns: repeat(5, 1fr);
   }

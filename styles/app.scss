@@ -25,6 +25,17 @@ h1,h2,h3,h4,p {
     }
     padding: 1rem;
 }
+.barraBusqueda {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    h2 {
+        margin-top: 1rem;
+        color: #E50606;
+        align-self: center;
+        font-size: 2rem;
+    }
+}
 .buscador {
     display: flex;
     justify-content: center;
@@ -57,7 +68,7 @@ h1,h2,h3,h4,p {
         }
     }
 }
-.pokemones {
+.pokemones_estatico,.pokemones_buscar {
     margin-top: 4rem;
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -81,13 +92,13 @@ h1,h2,h3,h4,p {
     }
 }
 @media (min-width: 560px ) {
-    .pokemones {
+    .pokemones_estatico,.pokemones_buscar {
         grid-template-columns: repeat(3,1fr);
   
     }
 }
 @media (max-width:370px) {
-    .pokemones {
+    .pokemones_estatico,.pokemones_buscar {
         grid-template-columns: 1fr;
     }
     .pokemones_pokemon {
@@ -107,12 +118,12 @@ h1,h2,h3,h4,p {
     }
 }
 @media (min-width:760px) {
-    .pokemones {
+    .pokemones_estatico,.pokemones_buscar {
         grid-template-columns: repeat(4,1fr);
     }
 }
 @media (min-width:940px) {
-    .pokemones {
+    .pokemones_estatico,.pokemones_buscar {
         grid-template-columns: repeat(5,1fr);
     }
 }

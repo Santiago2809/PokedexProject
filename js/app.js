@@ -1,9 +1,11 @@
-const divPokemones = document.querySelector('#pokemones');
-const input        = document.querySelector('#buscador');
-const boton        = document.querySelector('#boton');
-const body         = document.body;
+const divPokemones  = document.querySelector('#pokemones_estatico');
+const divPokeBuscar = document.querySelector('#pokemones_buscar');
+const input         = document.querySelector('#buscador');
+const divBuscador   = document.querySelector('#divBuscador');
+const boton         = document.querySelector('#boton');
+const body          = document.body;
 
-const crearPokeHtml = (pokemon) => {
+const crearPokeHtmlEstatico = (pokemon) => {
     const pokeHtml = `
     <img src="${pokemon.sprites.front_default}" alt="">
     <h2>Nombre: ${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}</h2>
@@ -18,26 +20,54 @@ const crearPokeHtml = (pokemon) => {
     divPokemones.append(divPoke);
 
 }
+const crearPokeHtmlBuscar = (pokemon) => {
+    const pokeHtml = `
+    <img src="${pokemon.sprites.front_default}" alt="">
+    <h2>Nombre: ${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}</h2>
+    <div class="pokemon_caracteristicas">
+        <p>Altura: ${pokemon.height/10 } mts</p>
+        <p>Peso: ${pokemon.weight/10}  kg</p>
+    </div>
+    `;
+    const divPoke = document.createElement('div');
+    divPoke.innerHTML += pokeHtml;
+    divPoke.classList.add('pokemones_pokemon');
+    divPokeBuscar.append(divPoke);
+
+}
 const filtrarPokes = (arregloPok) => {
-    
+
     if (input.value != '') {
         // console.log(arregloPok);
-        const inputBus = input.value.toLowerCase();
-        for ( nombre of arregloPok) {
-            if (nombre.indexOf(inputBus) != -1 ) {
-                console.log(body);
 
-                
+        const inputBus = input.value.toLowerCase();
+        let pokitos = [];
+        for ( pokemon of arregloPok) {
+            if (pokemon.name.indexOf(inputBus) != -1 ) {
+                if (divPokeBuscar.innerHTML != '') {
+                    // divPokeBuscar.innerHTML = '';
+                    // console.log('ya se hizo la busqueda');
+                } else {
+                    divPokemones.style.display = 'grid'
+                }
+                divPokemones.style.display = 'none'
+                crearPokeHtmlBuscar(pokemon)
+                pokitos.push(pokemon)
+            } else {
+
             }
+
         }
-        // const inputBus = input.value.toLowerCase();
-        // for (nombre of arregloPok) {
-        //     if (nombre.indexOf(inputBus) != -1) {
-        //         console.log( nombre );
-        //     }
-        // }
+        
     } else {
-        console.log('esta vacio guey');
+        // console.log('esta vacio guey');
+        if (divPokeBuscar.children.length > 0) {
+            // console.log('ya hay pokemones creados');
+            divPokeBuscar.innerHTML = ''
+            // console.log(divPokeBuscar.children)
+        } else {
+            // console.log('aun no hay ');
+        }
     }
 }
 const recuperarDatos = () => {
@@ -48,14 +78,23 @@ const recuperarDatos = () => {
         pokemones = data.results;
         for (let i=0;i <= 49; i++) {
             fetch(`${pokemones[i].url}`).then(resp => resp.json()).then( pokemon => {
-                arrPokes.push(pokemon.name)
-                crearPokeHtml(pokemon)
+                arrPokes.push(pokemon)
+                crearPokeHtmlEstatico(pokemon)
                 if (arrPokes.length >=50 ) {
-                    console.log(arrPokes);
+                    // console.log(arrPokes);
                     input.addEventListener('keyup', (e) => {
-                        if (e.keyCode == 13) {
-                            filtrarPokes(arrPokes)
+                        // filtrarPokes(arrPokes)
+
+                        if (e.target.value != '') {
+
+                            if (e.keyCode == 13) {
+                                filtrarPokes(arrPokes)
+                            }
+                        } else {
+                            divPokemones.style.display = 'grid'
+                            filtrarPokes()
                         }
+
                     })
                     boton.addEventListener('click', () => {
                         filtrarPokes(arrPokes)
@@ -63,17 +102,11 @@ const recuperarDatos = () => {
                 }
             })
         }
-        
+
     })
     .catch(err => console.log(err))
-    
-    
+
+
 }
-// boton.addEventListener('click', filtrarPokes)
-// input.addEventListener('keyup', (e) => {
-//     if (e.keyCode == 13) {
-//         filtrarPokes()
-//     }
-// })
 
 recuperarDatos();
