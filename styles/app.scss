@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,700;1,400&display=swap');
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*, *:before, *:after {
+box-sizing: inherit;
+}
+$fuentePrincipal: 'Nunito', sans-serif;
+$colorPrincipal: #E33C3C;
+* {
+    font-family: $fuentePrincipal;
+}
+h1,h2,h3,h4,p {
+    margin: 0;
+}
+
+// Header
+.header {
+    width: 100%;
+    background-color: $colorPrincipal;
+    h1 {
+        font-size: 4rem;
+        text-align: center;
+    }
+    padding: 1rem;
+}
+.buscador {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin: 2.5rem 2rem 0;
+    font-size: 2rem;
+
+    .input {
+        border: 1px solid #000 ;
+        border-radius: 2px;
+        width: 40rem;
+        outline: none;
+        &:focus {
+            border: 2px solid #000;
+        }
+        
+    }
+    .boton {
+        background-color: #5C9EAD;
+        border: none;
+        border-radius: 2px;
+        padding: 1.5rem;
+        color: #FFF;
+        cursor: pointer;
+        &:hover {
+            background-color: darken($color: #5C9EAD, $amount: 10);
+        }
+    }
+}
+.pokemones {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    align-items: center;
+    .pokemones_pokemon {
+        min-height: 25rem;
+        min-width: 15.7rem;
+        background-color: #9EE493;
+        text-align: center;
+        padding: 1rem;
+        margin: 1.5rem;
+        border: 3px solid #002;
+        border-radius: 5px;
+        p,h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        img {
+            width: 15rem;
+        }
+    }
+}
+@media (min-width: 560px ) {
+    .pokemones {
+        grid-template-columns: repeat(3,1fr);
+  
+    }
+}
+@media (max-width:370px) {
+    .pokemones {
+        grid-template-columns: 1fr;
+    }
+    .pokemones_pokemon {
+        img {
+            width: 20rem;
+        }
+    }
+    .buscador {
+        width: 95%;
+        margin: 4rem auto 0;
+        .input {
+            width: 100%;
+        }
+        .boton {
+            margin: 0;
+        }
+    }
+}
+@media (min-width:760px) {
+    .pokemones {
+        grid-template-columns: repeat(4,1fr);
+    }
+}
+@media (min-width:940px) {
+    .pokemones {
+        grid-template-columns: repeat(5,1fr);
+    }
+}
+
+
