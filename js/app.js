@@ -22,7 +22,7 @@ const crearPokeHtmlEstatico = (pokemon) => {
 }
 const crearPokeHtmlBuscar = (pokemon) => {
     const pokeHtml = `
-    <img src="${pokemon.sprites.front_default}" alt="">
+    <img src="${pokemon.sprites.front_default}" alt="imagen pokemon">
     <h2>Nombre: ${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}</h2>
     <div class="pokemon_caracteristicas">
         <p>Altura: ${pokemon.height/10 } mts</p>
@@ -117,8 +117,6 @@ const recuperarDatos = () => {
                 }
             })
         }
-        
-
     })
     .catch(err => console.log(err))
 
@@ -126,4 +124,3 @@ const recuperarDatos = () => {
 }
 
 recuperarDatos();
-

@@ -66,6 +66,7 @@ body {
         }
     }
 }
+
 .pokemones_estatico,.pokemones_buscar {
     margin-top: 4rem;
     display: grid;
@@ -89,6 +90,9 @@ body {
             // text-align: left;
             margin: 0 auto;
         }
+        .pokemon_detras {
+            display: none;
+        }
         p,h2 {
             font-size: 1.2rem;
             font-weight: bold;
@@ -107,6 +111,7 @@ body {
         position: absolute;
     }
 }
+
 @media (min-width: 560px ) {
     .pokemones_estatico,.pokemones_buscar {
         grid-template-columns: repeat(3,1fr);

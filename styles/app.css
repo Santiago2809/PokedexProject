@@ -117,6 +117,10 @@ body {
   margin: 0 auto;
 }
 
+.pokemones_estatico .pokemones_pokemon .pokemon_detras, .pokemones_buscar .pokemones_pokemon .pokemon_detras {
+  display: none;
+}
+
 .pokemones_estatico .pokemones_pokemon p, .pokemones_estatico .pokemones_pokemon h2, .pokemones_buscar .pokemones_pokemon p, .pokemones_buscar .pokemones_pokemon h2 {
   font-size: 1.2rem;
   font-weight: bold;
