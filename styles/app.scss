@@ -14,7 +14,9 @@ $colorPrincipal: #E33C3C;
 h1,h2,h3,h4,p {
     margin: 0;
 }
-
+body {
+    position: relative;
+}
 // Header
 .header {
     width: 100%;
@@ -29,12 +31,6 @@ h1,h2,h3,h4,p {
     display: flex;
     flex-direction: column;
     width: 95%;
-    h2 {
-        margin-top: 1rem;
-        color: #E50606;
-        align-self: center;
-        font-size: 2rem;
-    }
 }
 .buscador {
     display: flex;
@@ -49,8 +45,9 @@ h1,h2,h3,h4,p {
     .input {
         border: 1px solid #000 ;
         border-radius: 2px;
-        width: 40rem;
+        width: 80%;
         outline: none;
+        padding: 0.8rem;
         &:focus {
             border: 2px solid #000;
         }
@@ -63,6 +60,7 @@ h1,h2,h3,h4,p {
         padding: 1.5rem;
         color: #FFF;
         cursor: pointer;
+        outline: none;
         &:hover {
             background-color: darken($color: #5C9EAD, $amount: 10);
         }
@@ -74,21 +72,39 @@ h1,h2,h3,h4,p {
     grid-template-columns: repeat(2,1fr);
     align-items: center;
     .pokemones_pokemon {
-        min-height: 25rem;
-        min-width: 15.7rem;
+        min-height: 16.5rem;
+        min-width: 80%;
         background-color: #9EE493;
         text-align: center;
         padding: 1rem;
-        margin: 1.5rem;
+        margin: 1.5rem auto;
         border: 3px solid #002;
         border-radius: 5px;
+        word-wrap: normal;
+        cursor: pointer;
+        &:hover {
+            background-color: darken($color: #9EE493, $amount: 10);
+        }
+        .pokemon_caracteristicas {
+            // text-align: left;
+            margin: 0 auto;
+        }
         p,h2 {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
         }
         img {
-            width: 15rem;
+            width: 75%;
+            height: 20%;
         }
+    }
+    h3 {
+        // margin-top: 1rem;
+        color: #E50606;
+        align-self: center;
+        font-size: 2rem;
+        margin: 1rem auto 0;
+        position: absolute;
     }
 }
 @media (min-width: 560px ) {
@@ -99,11 +115,16 @@ h1,h2,h3,h4,p {
 }
 @media (max-width:370px) {
     .pokemones_estatico,.pokemones_buscar {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
     }
     .pokemones_pokemon {
+        width: 20%;
+        max-height: 15rem !important;
         img {
-            width: 20rem;
+            text-align: center;
+            width: 10rem;
+            height: 10rem;
         }
     }
     .buscador {
@@ -127,5 +148,21 @@ h1,h2,h3,h4,p {
         grid-template-columns: repeat(5,1fr);
     }
 }
-
+@media (min-width:380px) {
+    .pokemones_estatico,.pokemones_buscar {
+        .pokemones_pokemon {
+            margin: 1.5rem;
+            min-height: 25rem;
+            min-width: 15.7rem;
+            p,h2 {
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+            img {
+                width: 15rem;
+                height: 15rem;
+            }
+        }
+    }
+}
 

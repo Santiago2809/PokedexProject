@@ -18,6 +18,10 @@ h1, h2, h3, h4, p {
   margin: 0;
 }
 
+body {
+  position: relative;
+}
+
 .header {
   width: 100%;
   background-color: #E33C3C;
@@ -40,15 +44,6 @@ h1, h2, h3, h4, p {
   width: 95%;
 }
 
-.barraBusqueda h2 {
-  margin-top: 1rem;
-  color: #E50606;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  font-size: 2rem;
-}
-
 .buscador {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -67,8 +62,9 @@ h1, h2, h3, h4, p {
 .buscador .input {
   border: 1px solid #000;
   border-radius: 2px;
-  width: 40rem;
+  width: 80%;
   outline: none;
+  padding: 0.8rem;
 }
 
 .buscador .input:focus {
@@ -82,6 +78,7 @@ h1, h2, h3, h4, p {
   padding: 1.5rem;
   color: #FFF;
   cursor: pointer;
+  outline: none;
 }
 
 .buscador .boton:hover {
@@ -100,23 +97,44 @@ h1, h2, h3, h4, p {
 }
 
 .pokemones_estatico .pokemones_pokemon, .pokemones_buscar .pokemones_pokemon {
-  min-height: 25rem;
-  min-width: 15.7rem;
+  min-height: 16.5rem;
+  min-width: 80%;
   background-color: #9EE493;
   text-align: center;
   padding: 1rem;
-  margin: 1.5rem;
+  margin: 1.5rem auto;
   border: 3px solid #002;
   border-radius: 5px;
+  word-wrap: normal;
+  cursor: pointer;
+}
+
+.pokemones_estatico .pokemones_pokemon:hover, .pokemones_buscar .pokemones_pokemon:hover {
+  background-color: #79da6a;
+}
+
+.pokemones_estatico .pokemones_pokemon .pokemon_caracteristicas, .pokemones_buscar .pokemones_pokemon .pokemon_caracteristicas {
+  margin: 0 auto;
 }
 
 .pokemones_estatico .pokemones_pokemon p, .pokemones_estatico .pokemones_pokemon h2, .pokemones_buscar .pokemones_pokemon p, .pokemones_buscar .pokemones_pokemon h2 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
 .pokemones_estatico .pokemones_pokemon img, .pokemones_buscar .pokemones_pokemon img {
-  width: 15rem;
+  width: 75%;
+  height: 20%;
+}
+
+.pokemones_estatico h3, .pokemones_buscar h3 {
+  color: #E50606;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  font-size: 2rem;
+  margin: 1rem auto 0;
+  position: absolute;
 }
 
 @media (min-width: 560px) {
@@ -128,11 +146,18 @@ h1, h2, h3, h4, p {
 
 @media (max-width: 370px) {
   .pokemones_estatico, .pokemones_buscar {
-    -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+  .pokemones_pokemon {
+    width: 20%;
+    max-height: 15rem !important;
   }
   .pokemones_pokemon img {
-    width: 20rem;
+    text-align: center;
+    width: 10rem;
+    height: 10rem;
   }
   .buscador {
     width: 95%;
@@ -157,6 +182,22 @@ h1, h2, h3, h4, p {
   .pokemones_estatico, .pokemones_buscar {
     -ms-grid-columns: (1fr)[5];
         grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 380px) {
+  .pokemones_estatico .pokemones_pokemon, .pokemones_buscar .pokemones_pokemon {
+    margin: 1.5rem;
+    min-height: 25rem;
+    min-width: 15.7rem;
+  }
+  .pokemones_estatico .pokemones_pokemon p, .pokemones_estatico .pokemones_pokemon h2, .pokemones_buscar .pokemones_pokemon p, .pokemones_buscar .pokemones_pokemon h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .pokemones_estatico .pokemones_pokemon img, .pokemones_buscar .pokemones_pokemon img {
+    width: 15rem;
+    height: 15rem;
   }
 }
 /*# sourceMappingURL=app.css.map */

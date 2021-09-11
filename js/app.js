@@ -8,8 +8,8 @@ const body          = document.body;
 const crearPokeHtmlEstatico = (pokemon) => {
     const pokeHtml = `
     <img src="${pokemon.sprites.front_default}" alt="">
-    <h2>Nombre: ${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}</h2>
     <div class="pokemon_caracteristicas">
+        <h2>Nombre: ${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}</h2>
         <p>Altura: ${pokemon.height/10 } mts</p>
         <p>Peso: ${pokemon.weight/10}  kg</p>
     </div>
@@ -42,8 +42,11 @@ const filtrarPokes = (arregloPok) => {
 
         const inputBus = input.value.toLowerCase();
         let pokitos = [];
+        // console.log(pokitos);
+        divPokeBuscar.innerHTML = '';
         for ( pokemon of arregloPok) {
             if (pokemon.name.indexOf(inputBus) != -1 ) {
+                
                 if (divPokeBuscar.innerHTML != '') {
                     // divPokeBuscar.innerHTML = '';
                     // console.log('ya se hizo la busqueda');
@@ -52,11 +55,23 @@ const filtrarPokes = (arregloPok) => {
                 }
                 divPokemones.style.display = 'none'
                 crearPokeHtmlBuscar(pokemon)
-                pokitos.push(pokemon)
             } else {
+                pokitos.push(pokemon.name);
 
+                // console.log(pokitos);
             }
 
+        }
+        if ( divPokeBuscar.innerHTML == '') {
+            divPokemones.style.display = 'none'
+            // console.log('pokemon no encontrado');
+            if (!(divBuscador.children > 1)) {
+                const h2Error = document.createElement('h3');
+                h2Error.innerHTML = 'No se ha encontrado el Pokemon';
+                divPokeBuscar.append(h2Error);
+
+                // console.log('no tiene el mensaje de error');
+            }
         }
         
     } else {
@@ -76,14 +91,14 @@ const recuperarDatos = () => {
     .then( resp => resp.json())
     .then(data => {
         pokemones = data.results;
-        for (let i=0;i <= 49; i++) {
+        for (let i=0;i <= 59; i++) {
             fetch(`${pokemones[i].url}`).then(resp => resp.json()).then( pokemon => {
                 arrPokes.push(pokemon)
                 crearPokeHtmlEstatico(pokemon)
-                if (arrPokes.length >=50 ) {
-                    // console.log(arrPokes);
+                if (arrPokes.length >=60 ) {
+                    console.log(arrPokes);
                     input.addEventListener('keyup', (e) => {
-                        // filtrarPokes(arrPokes)
+                        filtrarPokes(arrPokes)
 
                         if (e.target.value != '') {
 
@@ -102,6 +117,7 @@ const recuperarDatos = () => {
                 }
             })
         }
+        
 
     })
     .catch(err => console.log(err))
@@ -110,3 +126,4 @@ const recuperarDatos = () => {
 }
 
 recuperarDatos();
+
