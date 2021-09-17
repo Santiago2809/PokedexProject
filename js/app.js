@@ -1,10 +1,12 @@
 const divPokemones  = document.querySelector('#pokemones_estatico');
 const divPokeBuscar = document.querySelector('#pokemones_buscar');
+const divPokeTodos  = document.querySelector('#pokemones');
 const input         = document.querySelector('#buscador');
 const divBuscador   = document.querySelector('#divBuscador');
 const boton         = document.querySelector('#boton');
 const body          = document.body;
 
+let idPoke  = '';
 const crearPokeHtmlEstatico = (pokemon) => {
     const pokeHtml = `
     <img src="${pokemon.sprites.front_default}" alt="">
@@ -17,6 +19,7 @@ const crearPokeHtmlEstatico = (pokemon) => {
     const divPoke = document.createElement('div');
     divPoke.innerHTML = pokeHtml;
     divPoke.classList.add('pokemones_pokemon');
+    divPoke.id = pokemon.name;
     divPokemones.append(divPoke);
 
 }
@@ -32,9 +35,11 @@ const crearPokeHtmlBuscar = (pokemon) => {
     const divPoke = document.createElement('div');
     divPoke.innerHTML += pokeHtml;
     divPoke.classList.add('pokemones_pokemon');
+    divPoke.id = pokemon.name
     divPokeBuscar.append(divPoke);
 
 }
+
 const filtrarPokes = (arregloPok) => {
 
     if (input.value != '') {
@@ -96,7 +101,7 @@ const recuperarDatos = () => {
                 arrPokes.push(pokemon)
                 crearPokeHtmlEstatico(pokemon)
                 if (arrPokes.length >=60 ) {
-                    console.log(arrPokes);
+                    // console.log(arrPokes);
                     input.addEventListener('keyup', (e) => {
                         filtrarPokes(arrPokes)
 
@@ -124,3 +129,47 @@ const recuperarDatos = () => {
 }
 
 recuperarDatos();
+
+const crearTarjetaPoke = (pokemon) => {
+    const pokeHtml = `
+    <div class="pokemonCarta">
+        <h2 class="pokemonCarta_nombre">${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}</h2>
+        <div class="pokemonCarta_imagen">
+        <img src="${pokemon.sprites.front_default}" alt="imagenFrente pokemon">
+        <img src="${pokemon.sprites.back_default}" alt="imagenDetras pokemon">
+        </div>
+        <div class="pokemonCarta_stats">
+            <h3>Salud: <span class="span1">✚ ${pokemon.stats[0].base_stat} puntos</span></h3>
+            <h3>Ataque: <span class="span2">⚔ ${pokemon.stats[1].base_stat} puntos</span></h3>
+            <h3>Defensa: <span class="span3">🛡 ${pokemon.stats[2].base_stat} puntos</span></h3>
+            <h3>Velocidad: <span class="span4">🗲 ${pokemon.stats[5].base_stat} puntos</span></h3>
+        </div>
+    </div>
+    `;
+    const divPokeCarta = document.createElement('div');
+    divPokeCarta.classList.add('overlay');
+    divPokeCarta.innerHTML = pokeHtml;
+    body.append(divPokeCarta);
+    divPokeCarta.onclick = function() {
+        divPokeCarta.remove();
+    }
+
+}
+
+divPokeTodos.addEventListener('click', e => {
+    // console.log(e.path);
+    if (e.path.length > 6) {
+        e.path.forEach( tarjeta => {
+            if (tarjeta.classList == 'pokemones_pokemon') {
+                // console.log(tarjeta)
+                fetch(`https://pokeapi.co/api/v2/pokemon/${tarjeta.id}`)
+                .then(resp => resp.json())
+                .then(data => {
+                    // console.log(data);
+                    crearTarjetaPoke(data) 
+                    
+                })
+            }
+        })
+    }
+})

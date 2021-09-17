@@ -2,6 +2,7 @@
 html {
     box-sizing: border-box;
     font-size: 62.5%;
+    position: relative;
 }
 *, *:before, *:after {
 box-sizing: inherit;
@@ -13,9 +14,6 @@ $colorPrincipal: #E33C3C;
 }
 h1,h2,h3,h4,p {
     margin: 0;
-}
-body {
-    position: relative;
 }
 // Header
 .header {
@@ -170,4 +168,96 @@ body {
         }
     }
 }
+.overlay {
+    background-color: rgba($color: #000, $alpha: 0.5);
+    position: fixed;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+.pokemonCarta {
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    // background-color: darken($color: #020122 , $amount: 0);
+    background-color: darken($color: #A0CFD3, $amount: 10);
+    border: 3px solid #000;
+    border-radius: 5px;
+    width: 50%;
+    height: 60%;
+    h2 {
+        text-align: center;
+        font-size: 2.5rem ;
+    }
+    .pokemonCarta_imagen {
+        display: flex;
+        justify-content: center;
+        img {
+            width: 15rem;
+        }
+        &:first-child {
+            margin-left: 3rem;
+            margin-right: 5rem;
+        }
 
+    }
+    .pokemonCarta_stats {
+        font-size: 1.5rem;
+        margin-top: 3.2rem;
+        justify-self: flex-start;
+        display: flex;
+        flex-direction: column;
+        height: 40%;
+        justify-content: space-around;
+        h3 {
+            display: flex;
+            justify-content: space-around;
+        }
+        .span1 {
+            color: #39FF1E;
+        }
+        .span2 {
+            color: #E50606;
+        }
+        .span3 {
+            color: #5864E0;
+        }
+        .span4 {
+            color: #FFF81E;
+        }
+    }
+}
+@media (max-width:550px) {
+    .pokemonCarta {
+        width: 80%;
+        height: 80%;
+    }
+    .pokemonCarta_imagen {
+        &:first-child {
+            margin-right: 0;
+        }
+    }
+}
+.botonesDireccion button {
+    background-color: #43A32C;
+    color: #FFF;
+    border-radius: 50%;
+    height: 5rem;
+    width: 5rem;
+    padding: 1.5rem;
+    font-size: 1.4rem;
+    text-align: center;
+    border: none;
+    outline: none;
+    margin-right: 2rem;
+    &:last-child {
+        margin-right: 0;
+    }
+    &:nth-child(2) {
+        margin-bottom: 4rem;
+        background-color: #F12424;
+    }
+}
